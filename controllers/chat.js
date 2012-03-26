@@ -6,6 +6,9 @@ var messages = [];
 
 function index(req, res)
 {
+    console.log(process.env);
+    return;
+
     if(req.session.user)
     {
         var query = {_id: req.session.user.id};

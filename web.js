@@ -47,7 +47,7 @@ app.configure('production', function()
 
 // DB connection
 
-db = mongoose.connect('mongodb://localhost/lechat');
+//db = mongoose.connect('mongodb://localhost/lechat');
 //db = mongoose.connect('mongodb://orfaust:3$ch3r@ds031657.mongolab.com:31657/heroku_app3477456');
 
 // Routes
