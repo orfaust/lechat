@@ -1,0 +1,28 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      a.brand(href="/") Le Chat
+
+      a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      ul.nav.nav-collapse
+        - if(1) // 0 = disabled
+          li.dropdown
+            a.dropdown-toggle(href="#", data-toggle="dropdown") About
+              b.caret
+            ul.dropdown-menu
+              li
+                a(href="/page/who") who?
+              li
+                a(href="/page/what") what?
+              li
+                a(href="/page/where") where?
+              li
+                a(href="/page/why") why?
+
+        li
+          a(href="/users") Users
+        li
+          a(href="/roles") Roles

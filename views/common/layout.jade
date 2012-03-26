@@ -1,0 +1,22 @@
+!!!
+html
+  head
+    //meta(name="description", value="#{meta.description}")
+    //meta(name="keywords", value="#{meta.keywords}")
+
+    title Le Chat
+
+    script(type="text/javascript", src="/assets/jquery/jquery-1.7.1.min.js")
+    script(type="text/javascript", src="/assets/jquery/jquery.scrollTo-min.js")
+
+    link(rel="stylesheet", href="/assets/bootstrap-2.0.2/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/assets/bootstrap-2.0.2/css/bootstrap-responsive.min.css")
+    script(type="text/javascript", src="/assets/bootstrap-2.0.2/js/bootstrap.min.js")
+
+    link(rel="stylesheet", type="text/css", href="/assets/style/common.css")
+        
+    block scripts
+  body
+    include menu
+    block contents
+    block bottom_scripts

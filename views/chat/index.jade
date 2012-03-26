@@ -1,0 +1,29 @@
+extends ../common/layout
+
+block bottom_scripts
+    script(type="text/javascript", src="assets/js/jquery.index.js")
+
+block contents
+    .container
+        .row
+            .span12
+                //.test TEST
+
+                #msg-wrapper.well
+                    #messages-container
+                        - if(messages.length == 0)
+                            p There are no messages yet
+                        - else
+                            - for(var i in messages)
+                                - var message = messages[i];
+                                p
+                                    span.user= message.from
+                                    span.msg : #{message.msg}
+
+                form.form-inline(action="hit", method="post")
+                    .input-append.input-prepend
+                        span.add-on= user.name
+                        input.input-large(type="text", name="msg")
+                        button.btn.btn-info(type="submit") Send
+
+                a.btn.btn-danger(href="/logout") Logout

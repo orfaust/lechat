@@ -1,0 +1,26 @@
+extends ../common/layout
+
+block bottom_scripts
+    script
+        var $email = $('input:first').focus();
+
+        $('form').submit(function()
+        {
+            //return $name.val().trim().length > 0;
+        });
+
+block contents
+    .container
+        form.form-horizontal(action="login", method="post")
+            fieldset
+                legend Login
+                .control-group
+                    label.control-label email
+                    .controls
+                        input(type="text", name="email")
+                .control-group
+                    label.control-label password
+                    .controls
+                        input(type="password", name="password")
+                .form-actions
+                    button.btn.btn-large.btn-primary Enter
