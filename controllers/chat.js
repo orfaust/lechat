@@ -6,14 +6,6 @@ var messages = [];
 
 function index(req, res)
 {
-    var response = '';
-    for(var i in process.env)
-    {
-        response += i + '\t' + process.env[i] + '\n';
-    }
-    res.end(response);
-    return;
-
     if(req.session.user)
     {
         var query = {_id: req.session.user.id};

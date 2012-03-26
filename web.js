@@ -45,14 +45,17 @@ app.configure('production', function()
     app.use(express.logger());
 });
 
-// DB connection
-
-//db = mongoose.connect('mongodb://localhost/lechat');
-//db = mongoose.connect('mongodb://orfaust:3$ch3r@ds031657.mongolab.com:31657/heroku_app3477456');
-
 // Routes
 
 require('./routes').init(app);
+
+// DB connection
+
+if(process.env.PORT)
+    db = mongoose.connect(process.env.MONGOLAB_URI);
+else
+    db = mongoose.connect('mongodb://localhost/lechat');
+//db = mongoose.connect('mongodb://orfaust:3$ch3r@ds031657.mongolab.com:31657/heroku_app3477456');
 
 
 var port = process.env.PORT || 300;
