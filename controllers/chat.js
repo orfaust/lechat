@@ -6,7 +6,12 @@ var messages = [];
 
 function index(req, res)
 {
-    console.log(process.env);
+    var response = '';
+    for(var i in process.env)
+    {
+        response += i + '\t' + process.env[i] + '\n';
+    }
+    res.end(response);
     return;
 
     if(req.session.user)
