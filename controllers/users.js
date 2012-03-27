@@ -1,14 +1,23 @@
 var Users = require('../models/users').Users;
 
-exports.loginGet = loginGet;
-exports.loginPost = loginPost;
+exports.index = function(req, res)
+{
+    Users.find(function(err, results)
+    {
+        if(err) console.log(err);
+        else
+        {
+            res.render('users/index', {locals: {users: results}});
+        }
+    });
+}
 
-function loginGet(req, res)
+exports.loginGet = function(req, res)
 {
     res.render('users/login');
 }
 
-function loginPost(req, res)
+exports.loginPost = function(req, res)
 {
     query = {email: req.body.email};
 
@@ -26,5 +35,24 @@ function loginPost(req, res)
             else res.render('users/login');
         }
         else res.redirect('/users/create');
+    });
+}
+
+exports.create = function(req, res)
+{
+    var locals = {
+        action: '/users'
+      , method: 'put'
+      , user: {name: '', email: '', role: ''}
+    };
+    res.render('users/form', {locals: locals});
+}
+
+exports.insert = function(req, res)
+{
+    Users.create(req.body.user, function(err, data)
+    {
+        if(err) console.log(err);
+        res.redirect('/');
     });
 }

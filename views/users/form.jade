@@ -1,0 +1,32 @@
+extends ../common/layout
+
+block bottom_scripts
+  script(type="text/javascript")
+    $('#user_name').focus();
+
+block contents
+    .container
+        .row
+            .span12
+                form.form-horizontal(action="#{action}", method="post")
+                    input(type="hidden", name="_method", value="#{method}")
+                    fieldset
+                        .control-group
+                            label.control-label(for="user_name") Name
+                            .controls
+                                input#user_name(type="text", name="user[name]", value="#{user.name}")
+                        .control-group
+                            label.control-label(for="user_email") Email
+                            .controls
+                                input#user_email(type="text", name="user[email]", value="#{user.email}")
+                        .control-group
+                            label.control-label(for="user_password") Password
+                            .controls
+                                input#user_password(type="password", name="user[password]", value="#{user.password}")
+                        .control-group
+                            label.control-label(for="user_password_again") Password again
+                            .controls
+                                input#user_password_again(type="password", name="user[password_again]", value="#{user.password_again}")
+
+                        .form-actions
+                            button.btn.btn-primary.btn-large(type="submit") Save

@@ -1,0 +1,38 @@
+extends ../common/layout
+
+block bottom_scripts
+    script(type="text/javascript")
+        $('.delete-user').click(function(){return confirm('Delete permanently?')});
+
+block contents
+    .container
+        .row
+            .span12
+                - if(users.length)
+                    table.table
+                        tr
+                            th Edit
+                            th Name
+                            th Email
+                            th Created on
+                            th Delete
+
+                        - for user in users
+                            tr
+                                td.action
+                                    a.btn(href="/users/#{user._id}")
+                                        i.icon-pencil
+                                td= user.name
+                                td= user.email
+
+                                - var date = new Date(user.createdOn);
+                                td= date.toDateString()
+                                td.action
+                                    form(action="/users/#{user._id}", method="post")
+                                        input(type="hidden", name="_method", value="delete")
+                                        button.btn.delete-user(type="submit")
+                                            i.icon-trash
+                - else
+                    p no users found :(
+
+                a.btn.btn-primary(href="/users/create") Create new user
