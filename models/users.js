@@ -6,8 +6,8 @@ var Users = function()
 {
     var userSchema = new Schema({
         name      : { type: String, required: true }
-      , email     : { type: String, unique: true }
-      , password  : { type: String }
+      , email     : { type: String, required: true, unique: true }
+      , password  : { type: String, required: true }
       , createdOn : { type: Date, default: Date.now }
     });
     return mongoose.model('Users', userSchema);

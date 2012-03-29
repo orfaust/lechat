@@ -11,4 +11,5 @@ exports.init = function(app)
     app.put('/users', users.insert);
     app.get('/users', users.index);
     app.post('/users/login', users.loginPost);
+    app.get('/users/logout', users.logout);
 }

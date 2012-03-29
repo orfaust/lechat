@@ -5,6 +5,7 @@
         "express": "2.5.8",
         "mongoose": "2.5.10",
         "stylus": "0.24.0",
-        "jade": "0.22.0"
+        "jade": "0.22.0",
+        "express-validator": "0.1.3"
     }
 }

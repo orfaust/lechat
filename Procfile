@@ -1,1 +1,4 @@
-web: node web.js
+#node: node web.js
+nodemon: nodemon web.js
+
+mongo: mongod --dbpath data

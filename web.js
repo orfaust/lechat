@@ -2,8 +2,9 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var mongoose = require('mongoose');
+var express = require('express'),
+    mongoose = require('mongoose')
+    expressValidator = require('express-validator');
 
 var app = module.exports = express.createServer();
 
@@ -17,7 +18,8 @@ app.configure(function()
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.use(express.bodyParser());
-      app.use(express.methodOverride());
+    app.use(express.methodOverride());
+    app.use(expressValidator);
 
     // user stylus css engine
     app.use(require("stylus").middleware({
@@ -51,7 +53,7 @@ require('./routes').init(app);
 
 // DB connection
 
-if(process.env.PORT)
+if(process.env.MONGOLAB_URI)
     db = mongoose.connect(process.env.MONGOLAB_URI);
 else
     db = mongoose.connect('mongodb://localhost/lechat');
@@ -63,5 +65,3 @@ app.listen(port, function()
 {
     console.log("Listening on " + port);
 });
-
-//mongodb://<user>:<password>@ds031657.mongolab.com:31657/heroku_app3477456
