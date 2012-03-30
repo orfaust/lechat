@@ -66,7 +66,6 @@ exports.loginPost = function(req, res)
         if(result)
         {
             // user found
-
             if(result.password == password)
             {
                 // login
@@ -90,10 +89,17 @@ exports.loginPost = function(req, res)
 
 exports.create = function(req, res)
 {
+    // decode email param
+    var email = '',
+        encodedEmail = req.param('encoded_email');
+
+    if(encodedEmail)
+        email = new Buffer(encodedEmail, 'base64').toString();
+
     var locals = {
         action: '/users'
       , method: 'put'
-      , user: {name: '', email: '', role: ''}
+      , user: {name: '', email: email, password: '', password_again: ''}
     };
     res.render('users/form', {locals: locals});
 }
@@ -102,8 +108,12 @@ exports.insert = function(req, res)
 {
     Users.create(req.body.user, function(err, data)
     {
-        if(err) console.log(err);
-        res.redirect('/');
+        if(err)
+        {
+            console.log(err);
+            res.send(err);
+        }
+        else res.redirect('/');
     });
 }
 
@@ -111,4 +121,42 @@ exports.logout = function(req, res)
 {
     req.session.destroy();
     res.redirect('/');
+}
+
+exports.edit = function(req, res)
+{
+    Users.findOne({_id: req.param('id')}, function(err, data)
+    {
+        if(err) res.send(err);
+        else
+        {
+            var locals = {
+                user: data
+              , action: '/users/' + data.id
+              , method: 'post'
+            };
+            res.render('users/form', {locals: locals});
+        }
+    });
+}
+
+exports.update = function(req, res)
+{
+    Users.update({_id: req.param('id')}, req.body.user, function(err)
+    {
+        if(err) res.send(err);
+        else
+        {
+            res.redirect('/users');
+        }
+    });
+}
+
+exports.remove = function(req, res)
+{
+    Users.remove({_id: req.param('id')}, function(err)
+    {
+        if(err) console.log(err);
+        res.redirect('/users');
+    });
 }

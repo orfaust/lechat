@@ -3,12 +3,18 @@
     .container
       a.brand(href="/") Le Chat
 
-      a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      ul.nav.nav-collapse
-        - if(1) // 0 = disabled
+      - if(1) // 0 = disabled
+        a.pull-right.btn(href="/users")
+          i.icon-user
+          |  Users
+
+      - else
+        a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+
+        ul.nav.nav-collapse
           li.dropdown
             a.dropdown-toggle(href="#", data-toggle="dropdown") About
               b.caret
@@ -22,7 +28,7 @@
               li
                 a(href="/page/why") why?
 
-        li
-          a(href="/users") Users
-        li
-          a(href="/roles") Roles
+          li
+            a(href="/users") Users
+          li
+            a(href="/roles") Roles
