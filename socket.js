@@ -1,8 +1,14 @@
 var sio = require('socket.io')
 
-
 module.exports = function(app) {
   var io = sio.listen(app, {log: false});
+
+  // heroku cedar configuration
+  io.configure(function () { 
+    io.set("transports", ["xhr-polling"]); 
+    io.set("polling duration", 10); 
+  });
+
   io.sockets.on('connection', onConnection);
 };
 
