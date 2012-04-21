@@ -1,29 +1,24 @@
 extends ../common/layout
 
-block bottom_scripts
-    script(type="text/javascript", src="assets/js/jquery.index.js")
+block scripts
+  script(type="text/javascript", src="/javascripts/lib/elementHandler.js");
+  script(type="text/javascript", src="/javascripts/lib/socketForm.js");
+  script(type="text/javascript", src="/javascripts/chat.js")
 
 block contents
-    .container
-        .row
-            .span12
-                //.test TEST
-
-                #msg-wrapper.well
-                    #messages-container
-                        - if(messages.length == 0)
-                            p There are no messages yet
-                        - else
-                            - for(var i in messages)
-                                - var message = messages[i];
-                                p
-                                    span.user= message.from
-                                    span.msg : #{message.msg}
-
-                form.form-inline(action="hit", method="post")
-                    .input-append.input-prepend
-                        span.add-on= user.name
-                        input.input-large(type="text", name="msg")
-                        button.btn.btn-info(type="submit") Send
-
-                a.btn.btn-danger(href="/users/logout") Logout
+  .container
+    .row.login.hide
+      .span4
+        h3 Choose your nickname
+        form#register-form(action="register")
+          input(name="nickname", placeholder="nickname")
+          br
+          a#register-handler.element-handler(href="#register") I want to register
+          #register
+            input(name="email", placeholder="email")
+            input(name="password", type="password", placeholder="password")
+      .span4
+        h3 Or login
+        form.socket-form(action="login")
+          input(name="email", placeholder="email")
+          input(name="password", type="password", placeholder="password")

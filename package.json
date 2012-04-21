@@ -2,11 +2,12 @@
     "name": "lechat",
     "version": "0.0.1",
     "dependencies": {
-        "express": "2.5.8",
-        "mongoose": "2.5.10",
-        "stylus": "0.24.0",
-        "jade": "0.22.0",
-        "express-validator": "0.1.3"
+        "express": "2.5.9",
+        "mongoose": "2.6.0",
+        "stylus": "0.25.0",
+        "jade": "0.25.0",
+        "express-validator": "0.2.0",
+        "socket.io": "0.9.6"
     },
     "engines": {
         "node": ">=0.2.2"

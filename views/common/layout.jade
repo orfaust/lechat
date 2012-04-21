@@ -1,20 +1,22 @@
-!!!
+!!! 5
 html
   head
     //meta(name="description", value="#{meta.description}")
     //meta(name="keywords", value="#{meta.keywords}")
 
-    title Le Chat
+    title Lechat
 
-    script(type="text/javascript", src="/assets/jquery/jquery-1.7.1.min.js")
-    script(type="text/javascript", src="/assets/jquery/jquery.scrollTo-min.js")
+    script(type="text/javascript", src="/jquery/jquery-1.7.2.min.js")
+    script(type="text/javascript", src="/jquery/jquery.scrollTo-min.js")
 
-    link(rel="stylesheet", href="/assets/bootstrap-2.0.2/css/bootstrap.min.css")
-    link(rel="stylesheet", href="/assets/bootstrap-2.0.2/css/bootstrap-responsive.min.css")
-    script(type="text/javascript", src="/assets/bootstrap-2.0.2/js/bootstrap.min.js")
+    link(rel="stylesheet", href="/bootstrap-2.0.2/css/bootstrap.min.css")
+    //link(rel="stylesheet", href="/bootstrap-2.0.2/css/bootstrap-responsive.min.css")
+    script(type="text/javascript", src="/bootstrap-2.0.2/js/bootstrap.min.js")
 
-    link(rel="stylesheet", type="text/css", href="/assets/style/common.css")
-        
+    link(rel="stylesheet", type="text/css", href="/style/common.css")
+
+    script(type="text/javascript", src="/socket.io/socket.io.js")
+
     block scripts
   body
     include menu

@@ -11,23 +11,57 @@ block contents
         form.form-horizontal(action="#{action}", method="post")
           input(type="hidden", name="_method", value="#{method}")
           fieldset
-            .control-group
-              label.control-label(for="user_name") Name
-              .controls
-                input#user_name(type="text", name="user[name]", value="#{user.name}")
-            .control-group
-              label.control-label(for="user_email") Email
-              .controls
-                input#user_email(type="text", name="user[email]", value="#{user.email}")
-            .control-group
-              label.control-label(for="user_password") Password
-              .controls
-                input#user_password(type="password", name="user[password]")
+            - if(errors.name)
+              .control-group.error
+                label.control-label.error(for="user_name") Name
+                .controls
+                  input#user_name(type="text", name="name", value="#{user.name}")
+                  span.help-inline= errors.name.msg
+            - else
+              .control-group
+                label.control-label(for="user_name") Name
+                .controls
+                  input#user_name(type="text", name="name", value="#{user.name}")
 
-            .control-group
-              label.control-label(for="user_password_again") Password again
-              .controls
-                input#user_password_again(type="password", name="user[password_again]")
+            - if(errors.email)
+              .control-group.error
+                label.control-label.error(for="user_email") Email
+                .controls
+                  input#user_email(type="text", name="email", value="#{user.email}")
+                  span.help-inline= errors.email.msg
+            - else
+              .control-group
+                label.control-label(for="user_email") Email
+                .controls
+                  input#user_email(type="text", name="email", value="#{user.email}")
+
+            - if(errors.password)
+              .control-group.error
+                label.control-label.error(for="user_password") Password
+                .controls
+                  input#user_password(type="password", name="password", value="#{user.password}")
+                  span.help-inline= errors.password.msg
+            - else
+              .control-group
+                label.control-label(for="user_password") Password
+                .controls
+
+                  - if(action == '/users/insert')
+                    input#user_password(type="password", name="password", value="#{user.password}")
+                  - else
+                    input#user_password(type="password", name="password")
+
+            - if(errors.password_again)
+              .control-group.error
+                label.control-label.error(for="user_password_again") Password again
+                .controls
+                  input#user_password_again(type="password", name="password_again")
+                  span.help-inline= errors.password_again.msg
+            - else
+              .control-group
+                label.control-label(for="user_password_again") Password again
+                .controls
+                  input#user_password_again(type="password", name="password_again")
 
             .form-actions
               button.btn.btn-primary.btn-large(type="submit") Save

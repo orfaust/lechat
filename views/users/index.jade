@@ -14,21 +14,23 @@ block contents
                             th Edit
                             th Name
                             th Email
+                            th Is admin
                             th Created on
                             th Delete
 
                         - for user in users
                             tr
                                 td.action
-                                    a.btn(href="/users/#{user._id}")
+                                    a.btn(href="/users/edit/#{user._id}")
                                         i.icon-pencil
                                 td= user.name
                                 td= user.email
+                                td= user.isAdmin
 
                                 - var date = new Date(user.createdOn);
                                 td= date.toDateString()
                                 td.action
-                                    form(action="/users/#{user._id}", method="post")
+                                    form(action="/users/delete/#{user._id}", method="post")
                                         input(type="hidden", name="_method", value="delete")
                                         button.btn.delete-user(type="submit")
                                             i.icon-trash

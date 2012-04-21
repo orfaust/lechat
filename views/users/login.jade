@@ -1,45 +1,49 @@
 extends ../common/layout
 
 block bottom_scripts
-    script
-        //var $email = $('input:first').focus();
-        var $focus = $('.control-group.error:first input').focus();
-        if($focus.length == 0)
-            $('.control-group:first input').focus();
+  script
+    //var $email = $('input:first').focus();
+    var $focus = $('.control-group.error:first input').focus();
+    if($focus.length == 0)
+      $('.control-group:first input').focus();
 
-        $('form').submit(function()
-        {
-            return $('input.email').val().trim().length > 0;
-        });
+    $('form').submit(function()
+    {
+      //return $('input.email').val().trim().length > 0;
+    });
 
 block contents
-    .container
-        form.form-horizontal(action="login", method="post")
-            fieldset
-                legend Login
-                - if(errors.email)
-                    .control-group.error
-                        label.control-label Email
-                        .controls
-                            input.email(type="text", name="email", value="#{values.email}")
-                            span.help-inline= errors.email
-                - else
-                    .control-group
-                        label.control-label Email
-                        .controls
-                            input.email(type="text", name="email", value="#{values.email}")
+  .container
+    form.form-horizontal(action="/users/login", method="post")
+      fieldset
+        legend Login
 
-                - if(errors.password)
-                    .control-group.error
-                        label.control-label Password
-                        .controls
-                            input(type="password", name="password", value="#{values.password}")
-                            span.help-inline= errors.password
-                - else
-                    .control-group
-                        label.control-label Password
-                        .controls
-                            input(type="password", name="password", value="#{values.password}")
+        if errors.login
+            .alert.alert-danger= errors.login
 
-                .form-actions
-                    button.btn.btn-large.btn-primary Enter
+        if errors.email
+          .control-group.error
+            label.control-label Password
+            .controls
+              input(type="text", name="email", value="#{values.email}")
+              span.help-inline= errors.email.msg
+        else
+          .control-group
+            label.control-label Password
+            .controls
+              input(type="text", name="email", value="#{values.email}")
+
+        if errors.password
+          .control-group.error
+            label.control-label Password
+            .controls
+              input(type="password", name="password", value="#{values.password}")
+              span.help-inline= errors.password.msg
+        else
+          .control-group
+            label.control-label Password
+            .controls
+              input(type="password", name="password", value="#{values.password}")
+
+        .form-actions
+          button.btn.btn-large.btn-primary Enter
